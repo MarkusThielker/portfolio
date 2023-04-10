@@ -16,7 +16,7 @@
         <div class="inline-flex items-center justify-center rounded-full border-4 border-orange-500/20">
             <img alt="Portrait of Markus, a young man with short brown hair, black glasses and wearing a
                   hoodie, while sitting in a park "
-                 class="w-24 h-24 z-10 object-cover aspect-square rounded-full border-4 border-orange-500/80"
+                 class="w-24 z-10 object-cover aspect-square rounded-full border-4 border-orange-500/80"
                  src="/profile-image.jpg">
             <span class="animate-ping absolute h-14 w-14 z-0 rounded-full bg-orange-400 opacity-50"></span>
         </div>
