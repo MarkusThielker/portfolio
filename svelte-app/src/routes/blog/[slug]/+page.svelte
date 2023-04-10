@@ -22,8 +22,8 @@
         </div>
 
         <p class="text-lg">{data.post.teaser}</p>
-        <article>
-            {data.post.content}
+        <article class="prose">
+            {@html data.post.content}
         </article>
 
     </div>

@@ -16,6 +16,7 @@
         "@tailwindcss/forms": "^0.5.3",
         "@tailwindcss/typography": "^0.5.9",
         "@types/node": "^18.15.11",
+        "@types/showdown": "^2.0.0",
         "autoprefixer": "^10.4.14",
         "postcss": "^8.4.21",
         "prisma": "^4.12.0",
@@ -29,6 +30,8 @@
     },
     "type": "module",
     "dependencies": {
-        "@prisma/client": "^4.12.0"
+        "@prisma/client": "^4.12.0",
+        "showdown": "^2.1.0",
+        "showdown-highlight": "^3.1.0"
     }
 }
