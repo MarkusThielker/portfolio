@@ -1,6 +1,6 @@
 <script lang="ts">
 
-    import {navItems} from '$lib/constants'
+    import {navItems} from "$lib/constants"
 </script>
 
 <nav class="flex w-full space-x-4 text-white">

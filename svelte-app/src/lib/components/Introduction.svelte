@@ -1,10 +1,10 @@
 <script lang="ts">
 
-    const name = 'Markus'
-    const position = 'Software Engineer at'
-    const description = 'Hey there and welcome to my developer portfolio where I plan to share ' +
-        'blog posts about things I learned and projects I worked on. While I am still working on ' +
-        'the site, you can already check out my GitHub or my LinkedIn profile.'
+    const name = "Markus"
+    const position = "Software Engineer at"
+    const description = "Hey there and welcome to my developer portfolio where I plan to share " +
+        "blog posts about things I learned and projects I worked on. While I am still working on " +
+        "the site, you can already check out my GitHub or my LinkedIn profile."
 
 </script>
 
