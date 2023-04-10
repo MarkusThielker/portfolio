@@ -1,8 +1,9 @@
 <script>
 
-    import '$lib/styles/app.css'
-    import {page} from '$app/stores'
-    import Navigation from '$lib/components/Navigation.svelte'
+    import {fade} from "svelte/transition"
+    import "$lib/styles/app.css"
+    import {page} from "$app/stores"
+    import Navigation from "$lib/components/Navigation.svelte"
 
     let scrollY = 0
     let showNavigation
@@ -17,7 +18,8 @@
 
     {#if showNavigation}
         <div class="fixed top-6 z-30 w-full grid grid-cols-[1fr,min(640px,100%),1fr] px-4">
-            <div class="col-start-2">
+            <div class="col-start-2" in:fade={{duration: 70, delay: $page.url.pathname !== "/" ? 90 : 0 }}
+                 out:fade={{ duration: 70}}>
                 <Navigation isMinimized="false"/>
             </div>
         </div>
@@ -29,7 +31,7 @@
 
     <!-- footer -->
     <div class="mt-16 h-16 grid grid-cols-[1fr,min(640px,100%),1fr]">
-        <div class="col-start-2">
+        <div class="col-start-2" in:fade={{duration: 70, delay: 90 }} out:fade={{ duration: 70}}>
             <hr class="pb-4">
             <div class="flex flex-row space-x-6">
                 2023 &copy; Markus Thielker

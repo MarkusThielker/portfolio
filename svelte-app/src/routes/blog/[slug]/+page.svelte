@@ -1,24 +1,31 @@
 <script lang="ts">
 
     import {STATS_BADGE} from "$lib/constants"
+    import PageTransition from "$lib/components/PageTransition.svelte"
 
     /** @type {import("./$types").PageData} */
     export let data
 
 </script>
 
-<div class="flex flex-col space-y-3">
+<PageTransition>
 
-    <p class="text-4xl font-semibold">{data.post.title}</p>
+    <div class="flex flex-col space-y-3">
 
-    <div class="flex flex-row space-x-2">
+        <p class="text-4xl font-semibold">{data.post.title}</p>
 
-        {#if !data.post.published}<p class="{STATS_BADGE} bg-yellow-300/20">Draft</p>{/if}
-        <p class={STATS_BADGE}>{data.post.views} views</p>
+        <div class="flex flex-row space-x-2">
+
+            {#if !data.post.published}<p class="{STATS_BADGE} bg-yellow-300/20">Draft</p>{/if}
+            <p class={STATS_BADGE}>{data.post.views} views</p>
+
+        </div>
+
+        <p class="text-lg">{data.post.teaser}</p>
+        <article>
+            {data.post.content}
+        </article>
 
     </div>
 
-    <p class="text-lg">{data.post.teaser}</p>
-    <p>{data.post.content}</p>
-
-</div>
+</PageTransition>
