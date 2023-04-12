@@ -12,8 +12,16 @@
 
     <p class="text-4xl font-semibold">Blog</p>
 
-    {#each data.posts as post}
-        <PostPreview {post}/>
-    {/each}
+    {#if data.posts.length === 0}
+
+        <p class="text-xl">No posts were published yet</p>
+
+    {:else}
+
+        {#each data.posts as post}
+            <PostPreview {post}/>
+        {/each}
+
+    {/if}
 
 </PageTransition>
