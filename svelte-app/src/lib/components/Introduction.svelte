@@ -23,7 +23,7 @@
 
         <div class="flex flex-col h-full justify-center">
             <h1 class="text-3xl font-semibold">{name}</h1>
-            <p class="inline-flex text-gray-300 text-lg">
+            <p class="inline-flex text-gray-700 dark:text-gray-300 text-lg">
                 {position}
                 <img
                         alt="Plain company logo of mercatis GmbH, a software company based in Ulm, Germany"
@@ -34,6 +34,6 @@
 
     </div>
 
-    <p class="mt-2 text-lg text-gray-200">{description}</p>
+    <p class="mt-2 text-lg text-gray-800 dark:text-gray-200">{description}</p>
 
 </div>

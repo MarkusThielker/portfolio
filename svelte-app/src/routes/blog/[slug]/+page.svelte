@@ -22,7 +22,7 @@
         </div>
 
         <p class="text-lg">{data.post.teaser}</p>
-        <article class="prose">
+        <article class="prose dark:prose-invert">
             {@html data.post.content}
         </article>
 

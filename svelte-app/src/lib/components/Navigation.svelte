@@ -6,7 +6,7 @@
 
 </script>
 
-<nav class="flex text-white {isMinimized ? ' px-4 py-2.5 rounded-2xl bg-stone-700/70 backdrop-blur' : ''}">
+<nav class="flex text-black dark:text-white {isMinimized ? ' px-4 py-2.5 rounded-2xl bg-stone-700/70 backdrop-blur' : ''}">
 
     {#if isMinimized}
 
@@ -27,7 +27,7 @@
 
             <a class="flex items-center group" href={item.path}>
 
-                <div class="absolute p-2 bg-orange-500 rounded-lg">
+                <div class="absolute p-2 bg-orange-500 rounded-lg text-white">
 
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.7"
                          stroke="currentColor" class="w-4 h-4 group-hover:w-5 group-hover:h-5 duration-200">
@@ -44,7 +44,7 @@
 
                 </div>
 
-                <div class="font-semibold ml-10">{item.name}</div>
+                <div class="font-semibold ml-10 {isMinimized ? ' text-white' : ''}">{item.name}</div>
 
             </a>
         {/each}

@@ -14,7 +14,7 @@
 
 </script>
 
-<div class="h-full min-h-screen w-full text-white bg-neutral-900">
+<div class="h-full min-h-screen w-full text-black dark:text-white bg-neutral-50 dark:bg-neutral-900">
 
     {#if showNavigation}
         <div class="fixed top-6 z-30 w-full grid grid-cols-[1fr,min(640px,100%),1fr] px-4">
