@@ -31,10 +31,17 @@
 
     <!-- footer -->
     <div class="mt-16 h-16 grid grid-cols-[1fr,min(640px,100%),1fr]">
-        <div class="col-start-2" in:fade={{duration: 70, delay: 90 }} out:fade={{ duration: 70}}>
-            <hr class="pb-4">
-            <div class="flex flex-row px-4 space-x-6">
-                2023 &copy; Markus Thielker
+        <div class="flex flex-col col-start-2" in:fade={{duration: 70, delay: 90 }} out:fade={{ duration: 70}}>
+            <hr class="pb-4 w-full">
+            <div class="flex flex-row px-4">
+                <div class="flex w-full justify-start">
+                    <div class="flex flex-row space-x-6">
+                        2023 &copy; Markus Thielker
+                    </div>
+                </div>
+                <div class="flex w-full justify-end">
+                    <a href="/legal-notice">Legal Notice</a>
+                </div>
             </div>
         </div>
     </div>
