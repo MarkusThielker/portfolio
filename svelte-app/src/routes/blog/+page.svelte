@@ -10,11 +10,11 @@
 
 <PageTransition>
 
-    <p class="text-4xl font-semibold">Blog</p>
+    <h1>Blog</h1>
 
     {#if data.posts.length === 0}
 
-        <p class="text-xl">No posts were published yet</p>
+        <h3>No posts were published yet</h3>
 
     {:else}
 

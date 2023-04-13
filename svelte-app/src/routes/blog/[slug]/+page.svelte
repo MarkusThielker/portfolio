@@ -12,7 +12,7 @@
 
     <div class="flex flex-col space-y-3">
 
-        <p class="text-4xl font-semibold">{data.post.title}</p>
+        <h1>{data.post.title}</h1>
 
         <div class="flex flex-row space-x-2">
 
@@ -21,7 +21,7 @@
 
         </div>
 
-        <p class="text-lg">{data.post.teaser}</p>
+        <h3>{data.post.teaser}</h3>
         <article class="prose dark:prose-invert">
             {@html data.post.content}
         </article>

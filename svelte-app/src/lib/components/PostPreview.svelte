@@ -12,7 +12,7 @@
     <div class="flex flex-col space-y-4">
 
         <div>
-            <h1 class="text-xl font-semibold">{post.title}</h1>
+            <h3>{post.title}</h3>
             <p style="max-lines: 3">{post.teaser}</p>
         </div>
 
