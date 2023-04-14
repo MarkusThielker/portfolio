@@ -5,6 +5,18 @@
 @tailwind components;
 @tailwind utilities;
 
+.shape-rounded {
+    @apply rounded-full;
+}
+
+.btn-primary {
+    @apply shape-rounded bg-orange-500 hover:bg-orange-600 px-2 py-1 text-white font-semibold cursor-pointer;
+}
+
+.btn-text-primary {
+    @apply text-center text-orange-500 font-semibold cursor-pointer;
+}
+
 h1 {
     @apply text-4xl;
 }
@@ -23,6 +35,14 @@ h4 {
 
 h5 {
     @apply text-lg;
+}
+
+.card {
+    @apply p-8 sm:shadow sm:bg-white dark:sm:dark:bg-black/20 rounded-3xl;
+}
+
+.input-text {
+    @apply shape-rounded border px-2 py-1 text-black;
 }
 
 .stats-badge {
