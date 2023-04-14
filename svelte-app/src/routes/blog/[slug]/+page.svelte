@@ -1,6 +1,5 @@
 <script lang="ts">
 
-    import {STATS_BADGE} from "$lib/constants"
     import PageTransition from "$lib/components/PageTransition.svelte"
 
     /** @type {import("./$types").PageData} */
@@ -16,8 +15,8 @@
 
         <div class="flex flex-row space-x-2">
 
-            {#if !data.post.published}<p class="{STATS_BADGE} bg-yellow-300/20">Draft</p>{/if}
-            <p class={STATS_BADGE}>{data.post.views} views</p>
+            {#if !data.post.published}<p class="stats-badge bg-yellow-300/20">Draft</p>{/if}
+            <p class="stats-badge">{data.post.views} views</p>
 
         </div>
 
