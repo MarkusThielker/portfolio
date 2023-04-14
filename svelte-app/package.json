@@ -30,7 +30,9 @@
     },
     "type": "module",
     "dependencies": {
+        "@lucia-auth/adapter-prisma": "^1.0.0",
         "@prisma/client": "^4.12.0",
+        "lucia-auth": "^1.0.0",
         "showdown": "^2.1.0",
         "showdown-highlight": "^3.1.0"
     }

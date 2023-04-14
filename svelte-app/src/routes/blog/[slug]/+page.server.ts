@@ -1,5 +1,5 @@
 import type {PageServerLoad} from "./$types"
-import {prismaClient} from "$lib/prisma"
+import {prismaClient} from "$lib/server/prisma"
 import type {Post} from "@prisma/client"
 import {redirect} from "@sveltejs/kit"
 import {showdownConverter} from "$lib/showdown"
