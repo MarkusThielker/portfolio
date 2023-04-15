@@ -48,3 +48,13 @@ h5 {
 .stats-badge {
     @apply flex flex-row px-2 bg-gray-800/20 dark:bg-gray-200/20 rounded-full;
 }
+
+::-moz-selection {
+    color: black;
+    background: #FF8500;
+}
+
+::selection {
+    color: black;
+    background: #FF8500;
+}
