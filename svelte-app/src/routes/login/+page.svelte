@@ -11,11 +11,11 @@
         <form class="flex flex-col space-y-2" method="POST" use:enhance>
             <div class="flex flex-col">
                 <label for="username">Username</label>
-                <input class="input-text" id="username" name="username"/>
+                <input class="input-text" id="username" name="username" required/>
             </div>
             <div class="flex flex-col">
                 <label for="password">Password</label>
-                <input class="input-text" id="password" name="password" type="password"/>
+                <input class="input-text" id="password" name="password" required type="password"/>
             </div>
             <input class="btn-primary" type="submit" value="Login"/>
         </form>
