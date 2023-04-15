@@ -4,6 +4,7 @@
     import "$lib/styles/app.css"
     import {page} from "$app/stores"
     import Navigation from "$lib/components/Navigation.svelte"
+    import {notifications} from "$lib/notification"
 
     let scrollY = 0
     let showNavigation
@@ -24,6 +25,16 @@
             </div>
         </div>
     {/if}
+
+    <div class="fixed z-30 flex flex-col-reverse items-bottom justify-end bottom-6 left-6">
+        {#each $notifications as notification}
+            <div class="flex flex-row alert {notification.getStyle()}" in:fade={{duration: 100}}
+                 out:fade={{duration: 100}}>
+                <p class="font-bold mr-1">{notification.type}</p>
+                {notification.message}
+            </div>
+        {/each}
+    </div>
 
     <div class="relative min-h-screen z-10 grid grid-cols-[1fr,min(640px,100%),1fr] gap-y-8 px-4 pt-36 font-sans xl:grid-cols-[1fr,minmax(auto,240px),min(640px,100%),minmax(auto,240px),1fr] xl:gap-x-9 xl:px-0 [&>*]:col-start-2 xl:[&>*]:col-start-3">
         <slot/>

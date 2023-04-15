@@ -45,6 +45,10 @@ h5 {
     @apply shape-rounded border border-neutral-200 px-2 py-1 text-black;
 }
 
+.alert {
+    @apply shape-rounded px-5 py-4 mt-2;
+}
+
 .stats-badge {
     @apply flex flex-row px-2 bg-gray-800/20 dark:bg-gray-200/20 rounded-full;
 }
