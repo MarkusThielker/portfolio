@@ -1,6 +1,7 @@
 import type {Actions, PageServerLoad} from "./$types"
-import {fail, redirect} from "@sveltejs/kit"
+import {redirect} from "@sveltejs/kit"
 import {auth} from "$lib/server/lucia"
+import {NotificationType} from "$lib/notification"
 
 export const load: PageServerLoad = async ({locals, request}) => {
     const session = await locals.validate()
@@ -16,7 +17,7 @@ export const actions: Actions = {
 
         // check for empty values
         if (typeof username !== "string" || typeof password !== "string") {
-            return fail(400)
+            return {notification: {type: NotificationType.WARNING, message: "Please enter a username and password"}}
         }
 
         try {
@@ -24,10 +25,10 @@ export const actions: Actions = {
             const key = await auth.useKey("username", username, password)
             const session = await auth.createSession(key.userId)
             locals.setSession(session)
+            return {notification: {type: NotificationType.SUCCESS, message: "Logged in successfully"}}
 
         } catch {
-            // invalid credentials
-            return fail(400)
+            return {notification: {type: NotificationType.ERROR, message: "Something unexpected happened"}}
         }
     },
 }

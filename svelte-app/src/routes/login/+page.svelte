@@ -1,5 +1,14 @@
 <script lang="ts">
+
     import {enhance} from "$app/forms"
+    import {notifications} from "$lib/notification"
+
+    /** @type {import("./$types").ActionData} */
+    export let form
+    $: {
+        if (form) notifications.show(form.notification.type, form.notification.message)
+    }
+
 </script>
 
 <div class="flex items-center justify-center">
