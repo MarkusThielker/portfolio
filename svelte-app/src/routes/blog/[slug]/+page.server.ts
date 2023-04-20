@@ -7,12 +7,21 @@ import {showdownConverter} from "$lib/showdown"
 /** @type {import("./$types").PageServerLoad} */
 export const load = (async ({locals, params}) => {
 
-    let post: Post | null = await prismaClient.post.findFirst({
-        where: {slug: params.slug, published: true},
-    })
+    const {session} = await locals.validateUser()
+
+    let post: Post | null
+    if (session) {
+        post = await prismaClient.post.findFirst({
+            where: {slug: params.slug},
+        })
+    } else {
+        post = await prismaClient.post.findFirst({
+            where: {slug: params.slug, published: true},
+        })
+    }
 
     if (post === null) {
-        return redirect(302, "/blog")
+        throw redirect(302, "/blog")
     }
 
     post = await prismaClient.post.update({
