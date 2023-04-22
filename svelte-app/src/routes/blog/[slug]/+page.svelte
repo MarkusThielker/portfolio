@@ -16,7 +16,7 @@
         if (form) notifications.show(form.notification.type, form.notification.message)
     }
 
-    let deleteConfirmationVisible = true
+    let deleteConfirmationVisible = false
 
 </script>
 
