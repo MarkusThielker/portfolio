@@ -19,19 +19,21 @@
 
 <PageTransition>
 
-    <div class="flex flex-col space-y-3">
+    {#if isAuthenticated}
+        <div class="flex flex-col space-y-3">
 
-        <nav class="flex px-4 py-2.5 rounded-2xl bg-stone-700/70 backdrop-blur">
+            <nav class="flex px-4 py-2.5 rounded-2xl bg-stone-700/70 backdrop-blur space-x-4">
 
-            <form action="{data.post.published ? '?/unpublish' : '?/publish'}" method="POST" use:enhance>
-                <button class="btn btn-primary" type="submit">
-                    {data.post.published ? 'Unpublish' : 'Publish'}
-                </button>
-            </form>
+                <form action="{data.post.published ? '?/unpublish' : '?/publish'}" method="POST" use:enhance>
+                    <button class="btn btn-primary" type="submit">
+                        {data.post.published ? 'Unpublish' : 'Publish'}
+                    </button>
+                </form>
 
-        </nav>
+            </nav>
 
-    </div>
+        </div>
+    {/if}
 
     <div class="flex flex-col space-y-3">
 
