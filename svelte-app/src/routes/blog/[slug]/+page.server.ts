@@ -80,6 +80,20 @@ export const actions: Actions = {
     },
     delete: async ({request, locals}) => {
 
+        const {session} = await locals.validateUser()
+
+        if (!session) return {notification: {type: NotificationType.ERROR, message: "No permission to delete post"}}
+
+        const url = request.url.replaceAll("?", "").split("/")
+        const slug = url[url.length - 2]
+
+        try {
+            await prismaClient.post.delete({where: {slug: slug}})
+            return {notification: {type: NotificationType.SUCCESS, message: "Post deleted successfully"}}
+
+        } catch (e) {
+            return {notification: {type: NotificationType.ERROR, message: "Something unexpected happened"}}
+        }
     },
 }
 

@@ -38,7 +38,7 @@ h5 {
 }
 
 .card {
-    @apply p-8 sm:shadow sm:bg-white dark:sm:dark:bg-black/20 rounded-3xl;
+    @apply p-8 sm:shadow sm:bg-white sm:dark:bg-black/20 rounded-3xl;
 }
 
 .input-text {
