@@ -18,7 +18,7 @@
 <div class="h-full min-h-screen w-full text-black dark:text-white bg-neutral-50 dark:bg-neutral-900">
 
     {#if showNavigation}
-        <div class="fixed top-6 z-30 w-full grid grid-cols-[1fr,min(640px,100%),1fr] px-4">
+        <div class="fixed top-6 z-10 w-full grid grid-cols-[1fr,min(640px,100%),1fr] px-4">
             <div class="col-start-2" in:fade={{duration: 70, delay: $page.url.pathname !== "/" ? 90 : 0 }}
                  out:fade={{ duration: 70}}>
                 <Navigation isMinimized="false"/>
@@ -26,7 +26,7 @@
         </div>
     {/if}
 
-    <div class="fixed z-30 flex flex-col-reverse items-bottom justify-end bottom-6 left-6">
+    <div class="fixed z-20 flex flex-col-reverse items-bottom justify-end bottom-6 left-6">
         {#each $notifications as notification}
             <div class="flex flex-row alert {notification.getStyle()}" in:fade={{duration: 100}}
                  out:fade={{duration: 100}}>
@@ -36,7 +36,7 @@
         {/each}
     </div>
 
-    <div class="relative min-h-screen z-10 grid grid-cols-[1fr,min(640px,100%),1fr] gap-y-8 px-4 pt-36 font-sans xl:grid-cols-[1fr,minmax(auto,240px),min(640px,100%),minmax(auto,240px),1fr] xl:gap-x-9 xl:px-0 [&>*]:col-start-2 xl:[&>*]:col-start-3">
+    <div class="relative min-h-screen grid grid-cols-[1fr,min(640px,100%),1fr] gap-y-8 px-4 pt-36 font-sans xl:grid-cols-[1fr,minmax(auto,240px),min(640px,100%),minmax(auto,240px),1fr] xl:gap-x-9 xl:px-0 [&>*]:col-start-2 xl:[&>*]:col-start-3">
         <slot/>
     </div>
 
