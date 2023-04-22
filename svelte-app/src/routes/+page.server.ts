@@ -21,6 +21,7 @@ export const actions: Actions = {
         const {session} = await locals.validateUser()
         if (session) {
             await auth.invalidateSession(session.sessionId)
+            locals.setSession(null)
             return {notification: {type: NotificationType.SUCCESS, message: "Logged out successfully"}}
         }
         return {notification: {type: NotificationType.ERROR, message: "Something unexpected happened"}}
