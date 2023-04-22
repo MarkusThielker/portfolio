@@ -9,16 +9,9 @@ export const load = (async ({locals}) => {
 
     const {session} = await locals.validateUser()
 
-    const {user} = await locals.validateUser()
-    let posts: Post[] | null
-    if (session) {
-        posts = await prismaClient.post.findMany()
-    } else {
-        posts = await prismaClient.post.findMany({
-            where: {published: true},
-        })
-    }
-    return {posts: posts, user: user}
+    let posts: Post[] | null = await prismaClient.post.findMany(session ? undefined : {where: {published: true}})
+
+    return {posts: posts, session: session}
 
 }) satisfies PageServerLoad
 

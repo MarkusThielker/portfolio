@@ -15,7 +15,7 @@
         if (form) notifications.show(form.notification.type, form.notification.message)
     }
 
-    $: isAuthenticated = data.user
+    $: isAuthenticated = data.session
 
 </script>
 

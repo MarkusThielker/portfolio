@@ -9,16 +9,11 @@ export const load = (async ({locals, params}) => {
 
     const {session} = await locals.validateUser()
 
-    let post: Post | null
-    if (session) {
-        post = await prismaClient.post.findFirst({
-            where: {slug: params.slug},
-        })
-    } else {
-        post = await prismaClient.post.findFirst({
-            where: {slug: params.slug, published: true},
-        })
-    }
+    let post: Post | null = await prismaClient.post
+        .findFirst(session ?
+            {where: {slug: params.slug, OR: [{published: true}, {published: false}]}} :
+            {where: {slug: params.slug, OR: [{published: true}]}},
+        )
 
     if (post === null) {
         throw redirect(302, "/blog")
