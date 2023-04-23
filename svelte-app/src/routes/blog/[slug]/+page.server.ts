@@ -20,12 +20,14 @@ export const load = (async ({locals, params}) => {
         throw redirect(302, "/blog")
     }
 
-    post = await prismaClient.post.update({
-        where: {slug: post.slug},
-        data: {
-            views: post.views + 1,
-        },
-    })
+    if (!session && !post.published) {
+        post = await prismaClient.post.update({
+            where: {slug: post.slug},
+            data: {
+                views: post.views + 1,
+            },
+        })
+    }
     post.content = showdownConverter.makeHtml(post.content)
 
     return {post: post, session: session}
