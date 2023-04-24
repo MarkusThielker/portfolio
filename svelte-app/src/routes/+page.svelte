@@ -1,5 +1,6 @@
 <script lang="ts">
 
+    import {enhance} from "$app/forms"
     import Introduction from "$lib/components/Introduction.svelte"
     import Navigation from "$lib/components/Navigation.svelte"
     import PostPreview from "$lib/components/PostPreview.svelte"
@@ -22,7 +23,7 @@
 <PageTransition>
 
     {#if isAuthenticated}
-        <form method="POST" action="?/logout" class="flex justify-end">
+        <form method="POST" action="?/logout" class="flex justify-end" use:enhance>
             <button type="submit" class="inline-flex space-x-2 btn-primary">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                      stroke="currentColor" class="w-6 h-6">

@@ -1,5 +1,6 @@
 <script lang="ts">
 
+    import {enhance} from "$app/forms"
     import PostPreview from "$lib/components/PostPreview.svelte"
     import PageTransition from "$lib/components/PageTransition.svelte"
     import {notifications} from "$lib/notification"
@@ -23,7 +24,7 @@
 
         <div class="fixed bottom-6 right-6 sm:bottom-12 sm:right-12">
 
-            <form method="POST" action="?/create">
+            <form method="POST" action="?/create" use:enhance>
                 <button type="submit" class="fab-primary">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                          stroke="currentColor">
