@@ -4,12 +4,12 @@
 
     export let content
     export let isEditable
-    export let type
+    export let textType
 
 </script>
 
 {#if isEditable}
-    <TextAreaEditor bind:content {type}/>
+    <TextAreaEditor bind:content {textType}/>
 {:else}
     <div>
         {@html content}
