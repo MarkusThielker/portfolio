@@ -28,9 +28,9 @@ export const load = (async ({locals, params}) => {
             },
         })
     }
-    post.content = showdownConverter.makeHtml(post.content)
+    const mdContent = showdownConverter.makeHtml(post.content)
 
-    return {post: post, session: session}
+    return {post: post, mdContent: mdContent, session: session}
 
 }) satisfies PageServerLoad
 
@@ -92,6 +92,40 @@ export const actions: Actions = {
         try {
             await prismaClient.post.delete({where: {slug: slug}})
             return {notification: {type: NotificationType.SUCCESS, message: "Post deleted successfully"}}
+
+        } catch (e) {
+            return {notification: {type: NotificationType.ERROR, message: "Something unexpected happened"}}
+        }
+    },
+    save: async ({request, locals}) => {
+
+        // console.log(await request.formData())
+
+        const {session} = await locals.validateUser()
+
+        if (!session) return {notification: {type: NotificationType.ERROR, message: "No permission to edit post"}}
+
+        const url = request.url.replaceAll("?", "").split("/")
+        const slug = url[url.length - 2]
+
+        const formData = await request.formData()
+
+        console.log(formData.get("content"))
+
+        try {
+            await prismaClient.post.update({
+                where: {slug: slug},
+                data: {
+                    slug: formData.get("slug") as string,
+                    title: formData.get("title") as string,
+                    teaser: formData.get("teaser") as string,
+                    content: formData.get("content") as string,
+                },
+            })
+            return {
+                redirect: `/blog/${formData.get("slug") as string}`,
+                notification: {type: NotificationType.SUCCESS, message: "Changes saved successfully"},
+            }
 
         } catch (e) {
             return {notification: {type: NotificationType.ERROR, message: "Something unexpected happened"}}

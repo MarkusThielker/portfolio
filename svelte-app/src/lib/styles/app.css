@@ -17,28 +17,57 @@
     @apply text-center text-orange-500 font-semibold cursor-pointer;
 }
 
-h1 {
+
+.h1 {
     @apply text-4xl;
 }
 
-h2 {
+h1 {
+    @apply h1;
+}
+
+.h2 {
     @apply text-3xl;
 }
 
-h3 {
+h2 {
+    @apply h2;
+}
+
+.h3 {
     @apply text-2xl;
 }
 
-h4 {
+h3 {
+    @apply h3;
+}
+
+.h4 {
     @apply text-xl;
 }
 
-h5 {
+h4 {
+    @apply h4;
+}
+
+.h5 {
     @apply text-lg;
 }
 
+h5 {
+    @apply h5;
+}
+
+.p {
+    @apply text-base;
+}
+
+p {
+    @apply p;
+}
+
 .card {
-    @apply p-8 sm:shadow sm:bg-white sm:dark:bg-black/20 rounded-3xl;
+    @apply p-8 sm:shadow sm:bg-white sm:dark:bg-neutral-800 rounded-3xl;
 }
 
 .input-text {

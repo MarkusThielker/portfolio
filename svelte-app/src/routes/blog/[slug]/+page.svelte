@@ -3,7 +3,9 @@
     import {enhance} from "$app/forms"
     import {fade} from "svelte/transition"
     import PageTransition from "$lib/components/PageTransition.svelte"
-    import {notifications} from "$lib/notification"
+    import {notifications, NotificationType} from "$lib/notification"
+    import PlainText from "$lib/components/PlainText.svelte"
+    import PlainTextArea from "$lib/components/TextArea.svelte"
 
     /** @type {import("./$types").PageData} */
     export let data
@@ -16,7 +18,25 @@
         if (form) notifications.show(form.notification.type, form.notification.message)
     }
 
+    $: {
+        data = data
+        initOrReset()
+    }
+
+    let slug, title, teaser, content, mdContent: string
+
+    function initOrReset() {
+        slug = data.post.slug
+        title = data.post.title
+        teaser = data.post.teaser
+        content = data.post.content
+        mdContent = data.mdContent
+        isEditable = false
+    }
+
     let deleteConfirmationVisible = false
+
+    let isEditable = false
 
 </script>
 
@@ -26,6 +46,31 @@
         <div class="flex flex-col space-y-3">
 
             <nav class="flex px-4 py-2.5 rounded-2xl bg-stone-700/70 backdrop-blur space-x-4">
+
+                {#if isEditable}
+                    <button class="btn btn-primary" type="button" on:click={() => {
+                        isEditable = false
+                        notifications.show(NotificationType.SUCCESS, "Changes discarded")
+                        initOrReset()
+                    }}>
+                        Reset
+                    </button>
+                    <form method="POST" action="?/save" use:enhance>
+                        <input id="slug" name="slug" class="hidden" bind:value={slug}>
+                        <input id="title" name="title" class="hidden" style="white-space: pre-wrap" bind:value={title}>
+                        <input id="teaser" name="teaser" class="hidden" style="white-space: pre-wrap"
+                               bind:value={teaser}>
+                        <input id="content" name="content" class="hidden" style="white-space: pre-wrap"
+                               bind:value={content}>
+                        <button class="btn btn-primary" type="submit">
+                            Save
+                        </button>
+                    </form>
+                {:else}
+                    <button class="btn btn-primary" type="button" on:click={() => isEditable = true}>
+                        Edit
+                    </button>
+                {/if}
 
                 <form action="{data.post.published ? '?/unpublish' : '?/publish'}" method="POST" use:enhance>
                     <button class="btn btn-primary" type="submit">
@@ -48,7 +93,10 @@
 
     <div class="flex flex-col space-y-3">
 
-        <h1>{data.post.title}</h1>
+
+        <h1>
+            <PlainText bind:content={title} {isEditable} textType="h1"/>
+        </h1>
 
         <div class="flex flex-row space-x-2">
 
@@ -57,10 +105,15 @@
 
         </div>
 
-        <h3>{data.post.teaser}</h3>
-        <article class="prose dark:prose-invert">
-            {@html data.post.content}
-        </article>
+        <h3>
+            <PlainText bind:content={teaser} {isEditable} textType="h3"/>
+        </h3>
+
+        {#if isEditable}
+            <PlainTextArea {isEditable} bind:content={content}/>
+        {:else}
+            {@html mdContent}
+        {/if}
 
     </div>
 
@@ -69,10 +122,10 @@
         <form action="?/delete" method="POST" use:enhance>
 
             <div class="relative z-30" transition:fade={{duration: 70}}>
-                <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+                <div class="fixed inset-0 bg-black bg-opacity-60 transition-opacity"></div>
                 <div class="fixed inset-0 overflow-y-auto">
                     <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
-                        <div class="relative overflow-hidden card bg-white dark:bg-black/20">
+                        <div class="relative overflow-hidden card">
                             <div>
                                 <div class="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-red-100">
                                     <svg class="h-6 w-6 text-red-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -91,7 +144,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="mt-5 mt-6 grid grid-cols-2 gap-3">
+                            <div class="mt-6 grid grid-cols-2 gap-3">
                                 <button type="submit" class="btn-text-primary">Delete Post</button>
                                 <button type="button" class="btn-primary"
                                         on:click={() => deleteConfirmationVisible = false}>Cancel
