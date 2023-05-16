@@ -110,8 +110,6 @@ export const actions: Actions = {
 
         const formData = await request.formData()
 
-        console.log(formData.get("content"))
-
         try {
             await prismaClient.post.update({
                 where: {slug: slug},

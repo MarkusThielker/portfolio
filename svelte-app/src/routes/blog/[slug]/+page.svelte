@@ -60,8 +60,7 @@
                         <input id="title" name="title" class="hidden" style="white-space: pre-wrap" bind:value={title}>
                         <input id="teaser" name="teaser" class="hidden" style="white-space: pre-wrap"
                                bind:value={teaser}>
-                        <input id="content" name="content" class="hidden" style="white-space: pre-wrap"
-                               bind:value={content}>
+                        <textarea id="content" name="content" class="hidden" bind:value={content}></textarea>
                         <button class="btn btn-primary" type="submit">
                             Save
                         </button>

@@ -15,4 +15,5 @@ export const showdownConverter = new showdown.Converter({
     requireSpaceBeforeHeadingText: true,
     ghMentions: true,
     emoji: true,
+    simpleLineBreaks: true,
 })
