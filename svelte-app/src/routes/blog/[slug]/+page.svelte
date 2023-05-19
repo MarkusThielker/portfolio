@@ -143,7 +143,9 @@
         {#if isEditable}
             <PlainTextArea {isEditable} bind:content={content}/>
         {:else}
-            {@html mdContent}
+            <div class="mdContent space-y-4">
+                {@html mdContent}
+            </div>
         {/if}
 
     </div>
