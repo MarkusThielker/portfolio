@@ -11,7 +11,7 @@
 
 </script>
 
-<div class="flex items-center justify-center">
+<div class="flex items-start justify-center">
 
     <div class="card flex flex-col max-w-md w-full space-y-4 ">
 
