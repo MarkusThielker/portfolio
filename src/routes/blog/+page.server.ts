@@ -27,6 +27,7 @@ export const actions: Actions = {
                 data: {
                     slug: slug,
                     title: "New Post",
+                    teaser: "Write a teaser here...",
                     content: "Start your post here...",
                     published: false,
                 },
