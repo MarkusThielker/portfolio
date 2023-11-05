@@ -17,6 +17,10 @@
     @apply text-center text-orange-500 font-semibold cursor-pointer;
 }
 
+a {
+    @apply hover:text-orange-500 duration-300;
+}
+
 
 .h1 {
     @apply text-4xl;
