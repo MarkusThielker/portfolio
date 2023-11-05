@@ -1,17 +1,15 @@
-<script>
+<script lang="ts">
 
     import {fade} from "svelte/transition"
     import "$lib/styles/app.css"
     import {page} from "$app/stores"
     import Navigation from "$lib/components/Navigation.svelte"
     import {notifications} from "$lib/notification"
+    import { version } from "$app/environment"
 
     let scrollY = 0
-    let showNavigation
 
-    $: {
-        showNavigation = scrollY > 500 || $page.url.pathname !== "/"
-    }
+    $: showNavigation = scrollY > 500 || $page.url.pathname !== "/"
 
 </script>
 
@@ -21,7 +19,7 @@
         <div class="fixed top-6 z-10 w-full grid grid-cols-[1fr,min(640px,100%),1fr] px-4">
             <div class="col-start-2" in:fade={{duration: 70, delay: $page.url.pathname !== "/" ? 90 : 0 }}
                  out:fade={{ duration: 70}}>
-                <Navigation isMinimized="false"/>
+                <Navigation isMinimized={false}/>
             </div>
         </div>
     {/if}
@@ -45,12 +43,11 @@
         <div class="flex flex-col col-start-2" in:fade={{duration: 70, delay: 90 }} out:fade={{ duration: 70}}>
             <hr class="pb-4 w-full">
             <div class="flex flex-row px-4">
-                <div class="flex w-full justify-start">
-                    <div class="flex flex-row space-x-6">
-                        2023 &copy; Markus Thielker
-                    </div>
+                <div class="flex w-full justify-start space-x-6">
+                    2023 &copy; Markus Thielker
                 </div>
-                <div class="flex w-full justify-end">
+                <div class="flex w-full justify-end space-x-8">
+                    <a href="https://github.com/MarkusThielker/portfolio/releases">Version {version}</a>
                     <a href="/legal-notice">Legal Notice</a>
                 </div>
             </div>
