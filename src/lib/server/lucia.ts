@@ -27,8 +27,8 @@ if (!building) {
 
         console.log("No admin user found")
 
-        const username = env.LUCIA_ADMIN_USERNAME
-        const password = env.LUCIA_ADMIN_PASSWORD
+        const username = env.LUCIA_ADMIN_USERNAME ?? ""
+        const password = env.LUCIA_ADMIN_PASSWORD ?? ""
 
         // check for empty values
         if (username.length > 0 && password.length > 0) {
