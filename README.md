@@ -7,9 +7,7 @@ This repository contains the source code of my portfolio/blog which is currently
 1. Start the PostgreSQL database. It will be the backbone of our application and locally available on port 5432. The
    setup is provided using docker. The credentials can be found in the docker-compose.yaml file.
    ```shell
-   cd docker/portfolio-dev
-   docker compose up -d
-   cd ../../svelte-app
+   docker compose -f docker/portfolio-dev/docker-compose.yaml up -d
    ```
 
 2. Install the npm dependencies:
