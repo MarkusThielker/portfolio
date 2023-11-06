@@ -12,7 +12,12 @@
     <div class="flex flex-col space-y-4">
 
         <div>
-            <h3>{post.title}</h3>
+            <div class="inline-flex items-center space-x-2">
+                {#if post.isPinned}
+                    <span class="material-icons-round">push_pin</span>
+                {/if}
+                <h3>{post.title}</h3>
+            </div>
             <p style="max-lines: 3">{post.teaser}</p>
         </div>
 
