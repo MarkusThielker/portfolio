@@ -11,6 +11,12 @@ export const load = (async ({locals}) => {
 
     let posts: Post[] | null = await prismaClient.post.findMany(session ? undefined : {where: {published: true}})
 
+    posts.sort((a, b) => {
+        if (a.isPinned && !b.isPinned) return -1
+        if (!a.isPinned && b.isPinned) return 1
+        return 0
+    })
+
     return {posts: posts, session: session}
 
 }) satisfies PageServerLoad
