@@ -129,5 +129,49 @@ export const actions: Actions = {
             return {notification: {type: NotificationType.ERROR, message: "Something unexpected happened"}}
         }
     },
+    pin: async ({request, locals}) => {
+            
+        const {session} = await locals.validateUser()
+
+        if (!session) return {notification: {type: NotificationType.ERROR, message: "No permission to pin post"}}
+
+        const url = request.url.replaceAll("?", "").split("/")
+        const slug = url[url.length - 2]
+
+        try {
+            await prismaClient.post.update({
+                where: {slug: slug},
+                data: {
+                    isPinned: true,
+                },
+            })
+            return {notification: {type: NotificationType.SUCCESS, message: "Post pinned successfully"}}
+
+        } catch (e) {
+            return {notification: {type: NotificationType.ERROR, message: "Something unexpected happened"}}
+        }
+    },
+    unpin: async ({request, locals}) => {
+            
+        const {session} = await locals.validateUser()
+
+        if (!session) return {notification: {type: NotificationType.ERROR, message: "No permission to unpin post"}}
+
+        const url = request.url.replaceAll("?", "").split("/")
+        const slug = url[url.length - 2]
+
+        try {
+            await prismaClient.post.update({
+                where: {slug: slug},
+                data: {
+                    isPinned: false,
+                },
+            })
+            return {notification: {type: NotificationType.SUCCESS, message: "Post unpinned successfully"}}
+
+        } catch (e) {
+            return {notification: {type: NotificationType.ERROR, message: "Something unexpected happened"}}
+        }
+    },
 }
 
