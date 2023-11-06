@@ -107,6 +107,17 @@
                     </button>
                 {/if}
 
+                <form action="{data.post.isPinned ? '?/unpin' : '?/pin'}" method="POST" use:enhance>
+                    <button class="flex space-x-1 btn-primary h-8 items-center justify-center" type="submit">
+                        {#if data.post.isPinned}
+                            <span class="material-icons-round">push_pin</span>
+                        {:else}
+                            <span class="material-icons-outlined">push_pin</span>                        
+                        {/if}
+                        <span>{data.post.isPinned ? 'Unpin' : 'Pin'}</span>
+                    </button>
+                </form>
+
                 <button class="flex btn-primary space-x-1 h-8 items-center justify-center" type="button"
                         on:click={() => deleteConfirmationVisible = true}>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
