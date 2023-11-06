@@ -1,5 +1,6 @@
 @import "./highlight-js/hljs-javascript.css";
 @import "./highlight-js/hljs-typescript.css";
+@import 'material-icons/iconfont/material-icons.css';
 
 @tailwind base;
 @tailwind components;
