@@ -2,9 +2,9 @@
 
     import TextAreaEditor from "$lib/components/TextAreaEditor.svelte"
 
-    export let content
-    export let isEditable
-    export let textType
+    export let content: string
+    export let isEditable: boolean
+    export let textType: string
 
 </script>
 
