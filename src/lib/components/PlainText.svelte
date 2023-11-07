@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 
     import PlainTextEditor from "$lib/components/PlainTextEditor.svelte"
 

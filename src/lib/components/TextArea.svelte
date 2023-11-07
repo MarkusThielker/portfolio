@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 
     import TextAreaEditor from "$lib/components/TextAreaEditor.svelte"
 
