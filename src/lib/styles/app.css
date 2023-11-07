@@ -18,6 +18,10 @@
     @apply text-center text-orange-500 font-semibold cursor-pointer;
 }
 
+.unstyled-input {
+    @apply w-full p-0 bg-transparent ring-0 focus:ring-0 border-0 placeholder:text-gray-400;
+}
+
 a {
     @apply hover:text-orange-500 duration-300;
 }
