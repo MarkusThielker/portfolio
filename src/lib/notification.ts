@@ -7,12 +7,12 @@ export enum NotificationType {
     INFO = "Info",
 }
 
-class Notification {
+export class Notification {
 
-    type: string
+    type: NotificationType
     message: string
 
-    constructor(type: string, message: string) {
+    constructor(type: NotificationType, message: string) {
         this.type = type
         this.message = message
     }
@@ -46,7 +46,7 @@ const _notifications = () => {
         subscribe: subscribe,
         set: set,
         update: update,
-        show: (type: string, message: string) => {
+        show: (type: NotificationType, message: string) => {
             const notification = new Notification(type, message)
             update((state) => [notification, ...state])
             setTimeout(removeToast, 5000)
