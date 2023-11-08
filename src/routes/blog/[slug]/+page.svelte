@@ -260,7 +260,7 @@
 
     <div class="flex flex-col space-y-3">
         <h1>
-            <PlainText bind:content={title} {isEditable} textType="h1" />
+            <PlainTextArea bind:content={title} {isEditable} textType="h1" />
         </h1>
 
         <div class="flex flex-row space-x-2">
@@ -271,7 +271,7 @@
         </div>
 
         <h3>
-            <PlainText bind:content={teaser} {isEditable} textType="h3" />
+            <PlainTextArea bind:content={teaser} {isEditable} textType="h3" />
         </h3>
 
         {#if isEditable}
