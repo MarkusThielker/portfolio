@@ -6,14 +6,15 @@
     import {notifications, NotificationType} from "$lib/notification"
     import PlainText from "$lib/components/PlainText.svelte"
     import PlainTextArea from "$lib/components/TextArea.svelte"
+    import type { PageData } from "./$types";
 
     /** @type {import("./$types").PageData} */
-    export let data
+    export let data: PageData
 
     $: isAuthenticated = data.session
 
     /** @type {import("./$types").FormData} */
-    export let form
+    export let form: HTMLFormElement
     $: {
         if (form) notifications.show(form.notification.type, form.notification.message)
     }
@@ -23,7 +24,11 @@
         initOrReset()
     }
 
-    let slug, title, teaser, content, mdContent: string
+    let slug: string
+    let title: string
+    let teaser: string
+    let content: string
+    let mdContent: string
 
     function initOrReset() {
         slug = data.post.slug

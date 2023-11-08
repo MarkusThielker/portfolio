@@ -4,14 +4,15 @@
     import PostPreview from "$lib/components/PostPreview.svelte"
     import PageTransition from "$lib/components/PageTransition.svelte"
     import {notifications} from "$lib/notification"
+    import type { PageData } from "./$types";
 
     /** @type {import("./$types").PageData} */
-    export let data
+    export let data: PageData
 
     $: isAuthenticated = data.session
 
     /** @type {import("./$types").FormData} */
-    export let form
+    export let form: HTMLFormElement
     $: {
         if (form) notifications.show(form.notification.type, form.notification.message)
     }

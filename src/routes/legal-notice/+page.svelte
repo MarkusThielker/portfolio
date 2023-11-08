@@ -1,9 +1,10 @@
 <script lang="ts">
 
     import PageTransition from "$lib/components/PageTransition.svelte"
+    import type { PageData } from "./$types";
 
     /** @type {import("./$types").PageData} */
-    export let data
+    export let data: PageData
 
 </script>
 

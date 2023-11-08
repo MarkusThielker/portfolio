@@ -4,7 +4,7 @@
     import {notifications} from "$lib/notification"
 
     /** @type {import("./$types").ActionData} */
-    export let form
+    export let form: HTMLFormElement
     $: {
         if (form) notifications.show(form.notification.type, form.notification.message)
     }
