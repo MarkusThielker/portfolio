@@ -1,31 +1,31 @@
-import type {Actions, PageServerLoad} from "./$types"
-import {prismaClient} from "$lib/server/prisma"
-import type {Post} from "@prisma/client"
-import {NotificationType} from "$lib/notification"
+import type { Actions, PageServerLoad } from "./$types"
+import { prismaClient } from "$lib/server/prisma"
+import type { Post } from "@prisma/client"
+import { NotificationType } from "$lib/notification"
 
 /** @type {import("./$types").PageServerLoad} */
-export const load = (async ({locals}) => {
+export const load = (async ({ locals }) => {
 
-    const {session} = await locals.validateUser()
+    const { session } = await locals.validateUser()
 
-    let posts: Post[] | null = await prismaClient.post.findMany(session ? undefined : {where: {published: true}})
-    
+    let posts: Post[] | null = await prismaClient.post.findMany(session ? undefined : { where: { published: true } })
+
     posts.sort((a, b) => {
         if (a.isPinned && !b.isPinned) return -1
         if (!a.isPinned && b.isPinned) return 1
         return 0
     })
 
-    return {posts: posts, session: session}
+    return { posts: posts, session: session }
 
 }) satisfies PageServerLoad
 
 export const actions: Actions = {
-    create: async ({request, locals}) => {
+    create: async ({ request, locals }) => {
 
-        const {session} = await locals.validateUser()
+        const { session } = await locals.validateUser()
 
-        if (!session) return {notification: {type: NotificationType.ERROR, message: "No permission to create draft"}}
+        if (!session) return { notification: { type: NotificationType.ERROR, message: "No permission to create draft" } }
 
         const slug = "new-post-" + new Date().getTime()
         try {
@@ -38,10 +38,10 @@ export const actions: Actions = {
                     published: false,
                 },
             })
-            return {notification: {type: NotificationType.SUCCESS, message: "Draft created successfully"}}
+            return { notification: { type: NotificationType.SUCCESS, message: "Draft created successfully" } }
 
         } catch (e) {
-            return {notification: {type: NotificationType.ERROR, message: "Something unexpected happened"}}
+            return { notification: { type: NotificationType.ERROR, message: "Something unexpected happened" } }
         }
     },
 }

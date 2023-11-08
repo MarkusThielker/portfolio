@@ -1,4 +1,4 @@
-import {writable} from "svelte/store"
+import { writable } from "svelte/store"
 
 export enum NotificationType {
     SUCCESS = "Success",
@@ -34,7 +34,7 @@ class Notification {
 const _notificationStore = writable<Notification[]>([])
 const _notifications = () => {
 
-    const {subscribe, set, update} = _notificationStore
+    const { subscribe, set, update } = _notificationStore
 
     function removeToast() {
         update((state) => {

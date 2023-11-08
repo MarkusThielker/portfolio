@@ -18,6 +18,10 @@
     @apply text-center text-orange-500 font-semibold cursor-pointer;
 }
 
+.unstyled-input {
+    @apply w-full p-0 bg-transparent ring-0 focus:ring-0 border-0 placeholder:text-gray-400;
+}
+
 a {
     @apply hover:text-orange-500 duration-300;
 }
@@ -95,7 +99,7 @@ pre {
     @apply bg-gray-800/20 dark:bg-gray-200/20 rounded-2xl p-4 overflow-x-scroll;
 }
 
-.mdContent > * > a {
+.mdContent>*>a {
     @apply text-white bg-orange-500 hover:bg-orange-600 shape-rounded px-2 py-1;
 }
 
