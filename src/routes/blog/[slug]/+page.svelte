@@ -50,7 +50,7 @@
 
 <svelte:head>
     <title>{data.post.title} - Markus Thielker</title>
-    <description>{data.post.teaser}</description>
+    <meta property="description" content={data.post.teaser}/>
 </svelte:head>
 
 
