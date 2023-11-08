@@ -26,7 +26,7 @@
 
 <svelte:head>
     <title>Home - Markus Thielker</title>
-    <description>The online portfolio and blog of Markus Thielker, a young full stack developer from Germany.</description>
+    <meta property="description" content="The online portfolio and blog of Markus Thielker, a young full stack developer from Germany."/>
 </svelte:head>
 
 

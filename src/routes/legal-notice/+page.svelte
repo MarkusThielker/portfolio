@@ -6,6 +6,13 @@
     export let data: PageData;
 </script>
 
+
+<svelte:head>
+    <title>Legal Notice - Markus Thielker</title>
+    <meta property="description" content="The online portfolio and blog of Markus Thielker, a young full stack developer from Germany."/>
+</svelte:head>
+
+
 <PageTransition>
     <h1>Legal Notice</h1>
 
