@@ -1,4 +1,6 @@
-FROM node:20-slim as build
+FROM node:20.6.0-slim AS build
+
+RUN apt-get update -y && apt-get install -y openssl
 
 WORKDIR /app
 
