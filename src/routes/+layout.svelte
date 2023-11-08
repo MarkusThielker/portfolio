@@ -26,7 +26,7 @@
                 }}
                 out:fade={{ duration: 70 }}
             >
-                <Navigation isMinimized={false} />
+                <Navigation isMinimized />
             </div>
         </div>
     {/if}
