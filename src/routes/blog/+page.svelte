@@ -57,7 +57,7 @@
         <h3>No posts were published yet</h3>
     {:else}
         {#each data.posts as post}
-            <PostPreview {post} />
+            <PostPreview {post} session={data.session}/>
         {/each}
     {/if}
 </PageTransition>

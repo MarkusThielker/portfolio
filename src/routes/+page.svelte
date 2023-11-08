@@ -63,6 +63,6 @@
     <Navigation />
 
     {#each data.posts as post}
-        <PostPreview {post} />
+        <PostPreview {post} session={data.session}/>
     {/each}
 </PageTransition>
