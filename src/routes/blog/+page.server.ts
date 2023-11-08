@@ -1,14 +1,13 @@
 import type { Actions, PageServerLoad } from "./$types"
-import { prismaClient } from "$lib/server/prisma"
 import type { Post } from "@prisma/client"
-import { NotificationType } from "$lib/notification"
+import { postActions, postService } from "$lib/server/services/post-service"
 
-/** @type {import("./$types").PageServerLoad} */
-export const load = (async ({ locals }) => {
+export const load: PageServerLoad = (async ({ locals }) => {
 
     const { session } = await locals.validateUser()
 
-    let posts: Post[] | null = await prismaClient.post.findMany(session ? undefined : { where: { published: true } })
+    let posts: Post[] | null = await postService.getAllPosts(session)
+    if (!posts) posts = []
 
     posts.sort((a, b) => {
         if (a.isPinned && !b.isPinned) return -1
@@ -20,28 +19,4 @@ export const load = (async ({ locals }) => {
 
 }) satisfies PageServerLoad
 
-export const actions: Actions = {
-    create: async ({ request, locals }) => {
-
-        const { session } = await locals.validateUser()
-
-        if (!session) return { notification: { type: NotificationType.ERROR, message: "No permission to create draft" } }
-
-        const slug = "new-post-" + new Date().getTime()
-        try {
-            await prismaClient.post.create({
-                data: {
-                    slug: slug,
-                    title: "New Post",
-                    teaser: "Write a teaser here...",
-                    content: "Start your post here...",
-                    published: false,
-                },
-            })
-            return { notification: { type: NotificationType.SUCCESS, message: "Draft created successfully" } }
-
-        } catch (e) {
-            return { notification: { type: NotificationType.ERROR, message: "Something unexpected happened" } }
-        }
-    },
-}
+export const actions: Actions = postActions
