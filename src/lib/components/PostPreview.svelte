@@ -4,9 +4,47 @@
 
     export let post: Post;
     export let session: any;
+
+    let deleteMode = false;
 </script>
 
-<div class="flex flex-col">
+<div class="relative flex flex-col">
+    {#if deleteMode}
+        <form
+            action="?/delete"
+            method="POST"
+            use:enhance
+            class="            
+            rounded-2xl
+            absolute
+            flex
+            w-full h-full
+            bg-red-900/50
+            items-center
+            justify-center
+            space-x-8"
+        >
+
+            <input type="hidden" name="slug" value={post.slug} />
+
+            <button
+                class="flex space-x-1 btn-primary h-8 items-center justify-center"
+                on:click={() => (deleteMode = false)}
+                type="button"
+            >
+                <span class="material-icons-round">cancel</span>
+                <span>Cancel</span>
+            </button>
+
+            <button
+                class="flex space-x-1 btn-primary h-8 items-center justify-center"
+                type="submit"
+            >
+                <span class="material-icons-round">delete</span>
+                <span>Confirm Deletion</span>
+            </button>
+        </form>
+    {/if}
     <a
         class="
             {session ? 'rounded-t-2xl' : 'rounded-2xl'}
@@ -60,22 +98,30 @@
             </form>
 
             <form
-                    action={post.published ? "?/unpublish" : "?/publish"}
-                    method="POST"
-                    use:enhance
+                action={post.published ? "?/unpublish" : "?/publish"}
+                method="POST"
+                use:enhance
+            >
+                <input type="hidden" name="slug" value={post.slug} />
+                <button
+                    class="flex space-x-1 btn-primary h-8 items-center justify-center"
+                    type="submit"
                 >
-                    <input type="hidden" name="slug" value={post.slug} />
-                    <button
-                        class="flex space-x-1 btn-primary h-8 items-center justify-center"
-                        type="submit"
-                    >
-                        {#if post.published}
-                            <span class="material-icons-round">visibility</span>
-                        {:else}
-                            <span class="material-icons-round">visibility_off</span>
-                        {/if}
-                    </button>
-                </form>
+                    {#if post.published}
+                        <span class="material-icons-round">visibility</span>
+                    {:else}
+                        <span class="material-icons-round">visibility_off</span>
+                    {/if}
+                </button>
+            </form>
+
+            <button
+                class="flex space-x-1 btn-primary h-8 items-center justify-center"
+                on:click={() => (deleteMode = true)}
+                type="submit"
+            >
+                <span class="material-icons-round">delete</span>
+            </button>
         </div>
     {/if}
 </div>

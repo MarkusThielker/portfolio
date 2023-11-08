@@ -62,7 +62,7 @@
 
     <Navigation />
 
-    {#each data.posts as post}
+    {#each data.posts as post (post.slug)}
         <PostPreview {post} session={data.session}/>
     {/each}
 </PageTransition>
