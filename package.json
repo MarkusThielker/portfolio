@@ -1,6 +1,16 @@
 {
     "name": "portfolio",
-    "version": "0.1.0-dev",
+    "description": "The source code to my website/blog thielker.dev",
+    "homepage": "https://github.com/MarkusThielker/portfolio",
+    "version": "1.0.0",
+    "license": "MIT",
+    "author": {
+        "name": "Markus Thielker"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/MarkusThielker/portfolio.git"
+    },
     "private": true,
     "scripts": {
         "dev": "vite dev --port 3000",
