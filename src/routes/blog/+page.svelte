@@ -21,6 +21,13 @@
     }
 </script>
 
+
+<svelte:head>
+    <title>Blog - Markus Thielker</title>
+    <description>The online portfolio and blog of Markus Thielker, a young full stack developer from Germany.</description>
+</svelte:head>
+
+
 <PageTransition>
     {#if isAuthenticated}
         <div class="fixed bottom-6 right-6 sm:bottom-12 sm:right-12">
