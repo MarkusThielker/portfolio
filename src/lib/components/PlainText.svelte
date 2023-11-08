@@ -4,7 +4,7 @@
 
     export let content: string
     export let isEditable: boolean
-    export let textType: string
+    export let textType: string | undefined = undefined
 
 </script>
 
