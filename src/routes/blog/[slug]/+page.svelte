@@ -47,6 +47,13 @@
     let isEditable = false;
 </script>
 
+
+<svelte:head>
+    <title>{data.post.title} - Markus Thielker</title>
+    <description>{data.post.teaser}</description>
+</svelte:head>
+
+
 <PageTransition>
     {#if isAuthenticated}
         <div class="flex flex-col space-y-3">

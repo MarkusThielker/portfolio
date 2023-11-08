@@ -23,6 +23,13 @@
     $: isAuthenticated = data.session;
 </script>
 
+
+<svelte:head>
+    <title>Home - Markus Thielker</title>
+    <description>The online portfolio and blog of Markus Thielker, a young full stack developer from Germany.</description>
+</svelte:head>
+
+
 <PageTransition>
     {#if isAuthenticated}
         <form
