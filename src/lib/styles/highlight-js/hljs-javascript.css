@@ -1,32 +1,31 @@
-
-.language-js > .hljs-keyword {
+.language-js>.hljs-keyword {
     color: #CF8E6D;
 }
 
-.language-js > .hljs-title {
+.language-js>.hljs-title {
     color: #548AF7;
 }
 
-.language-js > .hljs-string {
+.language-js>.hljs-string {
     color: #6AAB73;
 }
 
-.language-js > .hljs-params {
+.language-js>.hljs-params {
     color: #49b9fc;
 }
 
-.language-js > .hljs-literal {
+.language-js>.hljs-literal {
     color: #ec9d84;
 }
 
-.language-js > .hljs-number {
+.language-js>.hljs-number {
     color: #00aac7;
 }
 
-.language-js > .hljs-attr {
+.language-js>.hljs-attr {
     color: #ea93df;
 }
 
-.language-js > .hljs-comment {
+.language-js>.hljs-comment {
     color: #8a8a8a;
 }
