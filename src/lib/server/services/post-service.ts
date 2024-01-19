@@ -2,25 +2,17 @@ import type { Actions } from "@sveltejs/kit";
 import { prismaClient } from "../prisma";
 import type { Post } from "@prisma/client"
 import { NotificationType } from "$lib/notification";
-
-type Session = Readonly<{
-    sessionId: string;
-    userId: string;
-    activePeriodExpiresAt: Date;
-    idlePeriodExpiresAt: Date;
-    state: "idle" | "active";
-    fresh: boolean;
-}> | null
+import type { Session } from "lucia";
 
 export const postService = {
-    async getPost(slug: string, session: Session): Promise<Post | null> {
+    async getPost(slug: string, session: Session|null): Promise<Post | null> {
         return await prismaClient.post
             .findFirst(session ?
                 { where: { slug: slug, OR: [{ published: true }, { published: false }] } } :
                 { where: { slug: slug, OR: [{ published: true }] } },
             )
     },
-    async getAllPosts(session: Session): Promise<Post[] | null> {
+    async getAllPosts(session: Session|null): Promise<Post[] | null> {
         return await prismaClient.post.findMany(session ? undefined : { where: { published: true } })
     },
     async createPost(): Promise<boolean> {
@@ -148,7 +140,7 @@ export const postService = {
 export const postActions: Actions = {
     create: async ({ locals }) => {
 
-        const { session } = await locals.validateUser()
+        const session = await locals.validate()
         if (!session) return { notification: { type: NotificationType.ERROR, message: "No permission to create draft" } }
 
         return await postService.createPost()
@@ -162,7 +154,7 @@ export const postActions: Actions = {
     },
     publish: async ({ request, locals }) => {
 
-        const { session } = await locals.validateUser()
+        const session = await locals.validate()
         if (!session) return { notification: { type: NotificationType.ERROR, message: "No permission to publish post" } }
 
         const formData = await request.formData()
@@ -178,7 +170,7 @@ export const postActions: Actions = {
     },
     unpublish: async ({ request, locals }) => {
 
-        const { session } = await locals.validateUser()
+        const session = await locals.validate()
         if (!session) return { notification: { type: NotificationType.ERROR, message: "No permission to unpublish post" } }
 
         const formData = await request.formData()
@@ -194,7 +186,7 @@ export const postActions: Actions = {
     },
     delete: async ({ request, locals }) => {
 
-        const { session } = await locals.validateUser()
+        const session = await locals.validate()
         if (!session) return { notification: { type: NotificationType.ERROR, message: "No permission to delete post" } }
 
         const formData = await request.formData()
@@ -213,7 +205,7 @@ export const postActions: Actions = {
     },
     save: async ({ request, locals }) => {
 
-        const { session } = await locals.validateUser()
+        const session = await locals.validate()
         if (!session) return { notification: { type: NotificationType.ERROR, message: "No permission to edit post" } }
 
         const formData = await request.formData()
@@ -237,7 +229,7 @@ export const postActions: Actions = {
     },
     pin: async ({ request, locals }) => {
 
-        const { session } = await locals.validateUser()
+        const session = await locals.validate()
         if (!session) return { notification: { type: NotificationType.ERROR, message: "No permission to pin post" } }
 
         const formData = await request.formData()
@@ -253,7 +245,7 @@ export const postActions: Actions = {
     },
     unpin: async ({ request, locals }) => {
 
-        const { session } = await locals.validateUser()
+        const session = await locals.validate()
         if (!session) return { notification: { type: NotificationType.ERROR, message: "No permission to unpin post" } }
 
         const formData = await request.formData()

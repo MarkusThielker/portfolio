@@ -8,7 +8,7 @@ import { postActions } from "$lib/server/services/post-service"
 /** @type {import("./$types").PageServerLoad} */
 export const load = (async ({ locals }) => {
 
-    const { session } = await locals.validateUser()
+    const session = await locals.validate()
 
     let posts: Post[] | null = await prismaClient.post.findMany(session ? undefined : { where: { published: true } })
 
@@ -26,7 +26,7 @@ export const actions: Actions = {
     ...postActions,
     logout: async ({ locals }) => {
 
-        const { session } = await locals.validateUser()
+        const session = await locals.validate()
         if (session) {
             await auth.invalidateSession(session.sessionId)
             locals.setSession(null)

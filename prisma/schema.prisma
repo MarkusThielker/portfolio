@@ -1,56 +1,54 @@
 generator client {
-    provider = "prisma-client-js"
+  provider = "prisma-client-js"
 }
 
 datasource db {
-    provider = "postgresql"
-    url      = env("DATABASE_URL")
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
 model Post {
-    id          Int       @id @default(autoincrement())
-    slug        String    @unique @db.VarChar(128)
-    createdAt   DateTime  @default(now()) @map("created_at")
-    updatedAt   DateTime  @updatedAt @map("updated_at")
-    title       String    @db.VarChar(255)
-    teaser      String    @default("")
-    content     String    @default("")
-    published   Boolean   @default(false)
-    publishedAt DateTime? @map("published_at")
-    views       Int       @default(0) @map("view_count")
-    isPinned    Boolean   @default(false) @map("is_pinned")
+  id          Int       @id @default(autoincrement())
+  slug        String    @unique @db.VarChar(128)
+  createdAt   DateTime  @default(now()) @map("created_at")
+  updatedAt   DateTime  @updatedAt @map("updated_at")
+  title       String    @db.VarChar(255)
+  teaser      String    @default("")
+  content     String    @default("")
+  published   Boolean   @default(false)
+  publishedAt DateTime? @map("published_at")
+  views       Int       @default(0) @map("view_count")
+  isPinned    Boolean   @default(false) @map("is_pinned")
 
-    @@map("posts")
+  @@map("posts")
 }
 
-model AuthUser {
-    id           String        @id @unique
-    auth_session AuthSession[]
-    auth_key     AuthKey[]
-    username     String        @unique
+model User {
+  id           String    @id @unique
+  auth_session Session[]
+  key          Key[]
+  username     String    @unique
 
-    @@map("auth_user")
+  @@map("lucia_user")
 }
 
-model AuthSession {
-    id             String   @id @unique
-    user_id        String
-    active_expires BigInt
-    idle_expires   BigInt
-    auth_user      AuthUser @relation(references: [id], fields: [user_id], onDelete: Cascade)
+model Session {
+  id             String @id @unique
+  user_id        String
+  active_expires BigInt
+  idle_expires   BigInt
+  user           User   @relation(references: [id], fields: [user_id], onDelete: Cascade)
 
-    @@index([user_id])
-    @@map("auth_session")
+  @@index([user_id])
+  @@map("lucia_session")
 }
 
-model AuthKey {
-    id              String   @id @unique
-    hashed_password String?
-    user_id         String
-    primary_key     Boolean
-    expires         BigInt?
-    auth_user       AuthUser @relation(references: [id], fields: [user_id], onDelete: Cascade)
+model Key {
+  id              String  @id @unique
+  hashed_password String?
+  user_id         String
+  user            User    @relation(references: [id], fields: [user_id], onDelete: Cascade)
 
-    @@index([user_id])
-    @@map("auth_key")
+  @@index([user_id])
+  @@map("lucia_key")
 }
