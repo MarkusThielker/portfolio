@@ -6,18 +6,14 @@ import { env } from "$env/dynamic/private"
 import { prismaClient } from "./prisma"
 
 export const auth = lucia({
-    adapter: prisma(prismaClient, {
-        user: "user",
-        key: "key",
-        session: "session"
-    }),
+    adapter: prisma(prismaClient),
     env: dev ? "DEV" : "PROD",
     middleware: sveltekit(),
-    getUserAttributes: (userData) => {
+    getUserAttributes: (data) => {
         return {
-            username: userData.username
-        }
-    },
+            username: data.username
+        };
+    }
 })
 
 export type Auth = typeof auth;
@@ -43,11 +39,11 @@ if (!building) {
                 await auth.createUser({
                     key: {
                         providerId: "username",
-                        providerUserId: username,
+                        providerUserId: username.toLowerCase(),
                         password,
                     },
                     attributes: {
-                        username: username,
+                        username
                     },
                 })
 

@@ -4,7 +4,7 @@ import { postActions, postService } from "$lib/server/services/post-service"
 
 export const load: PageServerLoad = (async ({ locals }) => {
 
-    const { session } = await locals.validateUser()
+    const session = await locals.validate()
 
     let posts: Post[] | null = await postService.getAllPosts(session)
     if (!posts) posts = []

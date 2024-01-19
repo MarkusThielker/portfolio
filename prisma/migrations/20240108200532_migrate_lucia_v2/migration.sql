@@ -1,3 +1,7 @@
+-- DropColumn
+ALTER TABLE "auth_key" DROP COLUMN "expires",
+                       DROP COLUMN "primary_key";
+
 -- DropForeignKey
 ALTER TABLE "auth_key" DROP CONSTRAINT "auth_key_user_id_fkey";
 

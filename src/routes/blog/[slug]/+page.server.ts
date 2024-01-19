@@ -6,7 +6,7 @@ import { postActions, postService } from "$lib/server/services/post-service"
 
 export const load: PageServerLoad = (async ({ locals, params }) => {
 
-    const { session } = await locals.validateUser()
+    const session = await locals.validate()
 
     let post: Post | null = await postService.getPost(params.slug, session)
 
