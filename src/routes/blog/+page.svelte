@@ -21,24 +21,19 @@
     }
 </script>
 
+
+<svelte:head>
+    <title>Blog - Markus Thielker</title>
+    <meta property="description" content="The online portfolio and blog of Markus Thielker, a young full stack developer from Germany."/>
+</svelte:head>
+
+
 <PageTransition>
     {#if isAuthenticated}
         <div class="fixed bottom-6 right-6 sm:bottom-12 sm:right-12">
             <form method="POST" action="?/create" use:enhance>
                 <button type="submit" class="fab-primary">
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke-width="1.5"
-                        stroke="currentColor"
-                    >
-                        <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            d="M12 4.5v15m7.5-7.5h-15"
-                        />
-                    </svg>
+                    <span class="material-icons-round">add</span>
                 </button>
             </form>
         </div>
@@ -49,8 +44,8 @@
     {#if data.posts.length === 0}
         <h3>No posts were published yet</h3>
     {:else}
-        {#each data.posts as post}
-            <PostPreview {post} />
+        {#each data.posts as post (post.slug)}
+            <PostPreview {post} session={data.session}/>
         {/each}
     {/if}
 </PageTransition>

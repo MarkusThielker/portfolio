@@ -13,6 +13,13 @@
     }
 </script>
 
+
+<svelte:head>
+    <title>Login - Markus Thielker</title>
+    <meta property="description" content="The online portfolio and blog of Markus Thielker, a young full stack developer from Germany."/>
+</svelte:head>
+
+
 <div class="flex items-start justify-center">
     <div class="card flex flex-col max-w-md w-full space-y-4">
         <h1 class="text-xl text-center font-semibold">Admin Login</h1>

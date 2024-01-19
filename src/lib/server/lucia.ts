@@ -1,6 +1,6 @@
-import lucia from "lucia-auth"
-import { sveltekit } from "lucia-auth/middleware"
-import prisma from "@lucia-auth/adapter-prisma"
+import { lucia } from "lucia"
+import { sveltekit } from "lucia/middleware"
+import { prisma } from "@lucia-auth/adapter-prisma"
 import { building, dev } from "$app/environment"
 import { env } from "$env/dynamic/private"
 import { prismaClient } from "./prisma"
@@ -9,12 +9,11 @@ export const auth = lucia({
     adapter: prisma(prismaClient),
     env: dev ? "DEV" : "PROD",
     middleware: sveltekit(),
-    transformDatabaseUser: (userData) => {
+    getUserAttributes: (data) => {
         return {
-            userId: userData.id,
-            username: userData.username,
-        }
-    },
+            username: data.username
+        };
+    }
 })
 
 export type Auth = typeof auth;
@@ -22,7 +21,7 @@ export type Auth = typeof auth;
 if (!building) {
 
     console.log("Checking for admin account")
-    const adminUser = await prismaClient.authUser.findFirst({ where: { username: env.LUCIA_ADMIN_USERNAME } })
+    const adminUser = await prismaClient.user.findFirst({ where: { username: env.LUCIA_ADMIN_USERNAME } })
     if (!adminUser) {
 
         console.log("No admin user found")
@@ -38,13 +37,13 @@ if (!building) {
             try {
 
                 await auth.createUser({
-                    primaryKey: {
+                    key: {
                         providerId: "username",
-                        providerUserId: username,
+                        providerUserId: username.toLowerCase(),
                         password,
                     },
                     attributes: {
-                        username: username,
+                        username
                     },
                 })
 

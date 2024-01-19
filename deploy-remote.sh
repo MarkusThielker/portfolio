@@ -1,13 +1,17 @@
-cd ~/dev/portfolio || exit
+image="$1"
+version="$2"
+path="$3"
+
+cd "$path" || exit
 
 # unzip archive
-gzip -d portfolio-prod-"$2".tar.gz
+gzip -d "$image"-"$version".tar.gz
 
 # load image, tag as latest and restart containers
-docker load -i ./portfolio-prod-"$2".tar
-docker image tag "$1":"$2" "$1":latest
-docker compose down
-docker compose up -d --no-deps --build
+docker load -i ./"$image"-"$version".tar
+docker image tag "$image":"$version" "$image":latest
+docker compose down svelte-migrations svelte
+docker compose up -d --no-deps --build svelte-migrations svelte
 
 # clean up files
-rm portfolio-prod-"$2".tar
+rm "$image"-"$version".tar

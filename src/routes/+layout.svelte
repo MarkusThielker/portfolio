@@ -11,6 +11,13 @@
     $: showNavigation = scrollY > 500 || $page.url.pathname !== "/";
 </script>
 
+
+<svelte:head>
+    <title>Markus Thielker</title>
+    <meta property="description" content="The online portfolio and blog of Markus Thielker, a young full stack developer from Germany."/>
+</svelte:head>
+
+
 <div
     class="h-full min-h-screen w-full text-black dark:text-white bg-neutral-50 dark:bg-neutral-900"
 >
@@ -26,7 +33,7 @@
                 }}
                 out:fade={{ duration: 70 }}
             >
-                <Navigation isMinimized={false} />
+                <Navigation isMinimized />
             </div>
         </div>
     {/if}

@@ -3,11 +3,12 @@ import { prismaClient } from "$lib/server/prisma"
 import type { Post } from "@prisma/client"
 import { auth } from "$lib/server/lucia"
 import { NotificationType } from "$lib/notification"
+import { postActions } from "$lib/server/services/post-service"
 
 /** @type {import("./$types").PageServerLoad} */
 export const load = (async ({ locals }) => {
 
-    const { session } = await locals.validateUser()
+    const session = await locals.validate()
 
     let posts: Post[] | null = await prismaClient.post.findMany(session ? undefined : { where: { published: true } })
 
@@ -22,9 +23,10 @@ export const load = (async ({ locals }) => {
 }) satisfies PageServerLoad
 
 export const actions: Actions = {
-    logout: async ({ request, locals }) => {
+    ...postActions,
+    logout: async ({ locals }) => {
 
-        const { session } = await locals.validateUser()
+        const session = await locals.validate()
         if (session) {
             await auth.invalidateSession(session.sessionId)
             locals.setSession(null)

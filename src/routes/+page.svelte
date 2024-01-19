@@ -23,6 +23,13 @@
     $: isAuthenticated = data.session;
 </script>
 
+
+<svelte:head>
+    <title>Home - Markus Thielker</title>
+    <meta property="description" content="The online portfolio and blog of Markus Thielker, a young full stack developer from Germany."/>
+</svelte:head>
+
+
 <PageTransition>
     {#if isAuthenticated}
         <form
@@ -55,7 +62,7 @@
 
     <Navigation />
 
-    {#each data.posts as post}
-        <PostPreview {post} />
+    {#each data.posts as post (post.slug)}
+        <PostPreview {post} session={data.session}/>
     {/each}
 </PageTransition>

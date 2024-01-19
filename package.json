@@ -2,7 +2,7 @@
     "name": "portfolio",
     "description": "The source code to my website/blog thielker.dev",
     "homepage": "https://github.com/MarkusThielker/portfolio",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "license": "MIT",
     "author": {
         "name": "Markus Thielker"
@@ -40,10 +40,10 @@
     },
     "type": "module",
     "dependencies": {
-        "@lucia-auth/adapter-prisma": "^1.0.0",
+        "@lucia-auth/adapter-prisma": "^3.0.2",
         "@prisma/client": "^5.5.2",
         "dotenv": "^16.3.1",
-        "lucia-auth": "^1.0.0",
+        "lucia": "^2.7.6",
         "material-icons": "^1.13.12",
         "showdown": "^2.1.0",
         "showdown-highlight": "^3.1.0"
